@@ -39,11 +39,10 @@ const Navbar = () => {
     >
       <button
         onClick={() => scrollTo("#home")}
-        className="font-display text-xl font-bold tracking-tight"
+        className="inline-flex items-center"
         aria-label="Go to home"
       >
-        <span className="text-gradient">ivula</span>
-        <span className="text-foreground">.tech</span>
+        <img src="/ivula-logo.svg" alt="Ivula Tech" className="h-10 w-auto" />
       </button>
 
       <div className="hidden md:flex items-center gap-7">
