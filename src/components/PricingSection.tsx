@@ -87,7 +87,7 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`relative rounded-2xl p-7 flex flex-col ${
+              className={`relative rounded-2xl p-7 flex flex-col transition-transform duration-300 hover:-translate-y-1 ${
                 plan.featured
                   ? "glass-card violet-glow-strong border border-primary/30"
                   : "glass-card"
@@ -117,7 +117,7 @@ const PricingSection = () => {
                 className={`w-full py-3 rounded-xl font-semibold text-sm transition-all ${
                   plan.featured
                     ? "bg-gradient-violet text-primary-foreground hover:opacity-90"
-                    : "glass text-foreground hover:bg-secondary/50"
+                    : "glass text-foreground hover:bg-secondary/50 hover:border-primary/30"
                 }`}
               >
                 Get Started
