@@ -9,7 +9,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section className="py-24 px-6">
+  <section id="services" className="py-24 px-6">
     <div className="max-w-6xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ const ServicesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="glass-card rounded-2xl p-6 hover:violet-glow transition-shadow duration-300 group"
+            className="group rounded-2xl glass-card p-6 transition-all duration-300 hover:-translate-y-1 hover:violet-glow"
           >
             <div className="w-12 h-12 rounded-xl bg-gradient-violet flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <s.icon size={22} className="text-primary-foreground" />
