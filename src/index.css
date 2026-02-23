@@ -69,6 +69,12 @@
   html {
     scroll-behavior: smooth;
   }
+
+  ::selection {
+    background: hsla(265, 80%, 60%, 0.35);
+    color: hsl(260, 10%, 96%);
+  }
+
 }
 
 @layer utilities {
@@ -80,10 +86,10 @@
   }
 
   .glass-card {
-    background: hsla(260, 20%, 10%, 0.4);
+    background: linear-gradient(165deg, hsla(260, 20%, 12%, 0.65), hsla(260, 20%, 10%, 0.35));
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsla(260, 20%, 25%, 0.2);
+    border: 1px solid hsla(260, 20%, 25%, 0.26);
   }
 
   .violet-glow {

@@ -17,6 +17,8 @@ const ContactSection = () => {
     phone: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const next = () => setStep((s) => Math.min(s + 1, 2));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
@@ -26,8 +28,58 @@ const ContactSection = () => {
     (step === 1 && data.budget) ||
     (step === 2 && data.timeline && data.name && data.email);
 
-  const handleSubmit = () => {
-    if (canProceed) setSubmitted(true);
+  const fallbackToMailto = () => {
+    const subject = encodeURIComponent(`New project inquiry from ${data.name}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${data.name}`,
+        `Email: ${data.email}`,
+        `Phone: ${data.phone || "Not provided"}`,
+        `Project Type: ${data.projectType}`,
+        `Budget: ${data.budget}`,
+        `Timeline: ${data.timeline}`,
+      ].join("\n")
+    );
+
+    window.location.href = `mailto:info@ivula.co.ke?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async () => {
+    if (!canProceed || submitting) return;
+
+    setSubmitError(null);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@ivula.co.ke", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "Not provided",
+          projectType: data.projectType,
+          budget: data.budget,
+          timeline: data.timeline,
+          _subject: `New project inquiry from ${data.name}`,
+          _template: "table",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Submission failed with status ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError("We couldn't send automatically. Please send using your email app.");
+      fallbackToMailto();
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -40,7 +92,7 @@ const ContactSection = () => {
         >
           <CheckCircle2 size={48} className="text-primary mx-auto mb-4" />
           <h3 className="font-display text-2xl font-bold mb-2">We'll be in touch!</h3>
-          <p className="text-muted-foreground">Thank you, {data.name}. Our team will reach out within 24 hours.</p>
+          <p className="text-muted-foreground">Thank you, {data.name}. Your request has been sent to info@ivula.co.ke.</p>
         </motion.div>
       </section>
     );
@@ -59,7 +111,6 @@ const ContactSection = () => {
           <p className="text-muted-foreground">Tell us about your project in 60 seconds.</p>
         </motion.div>
 
-        {/* Progress */}
         <div className="flex items-center gap-2 mb-8">
           {[0, 1, 2].map((i) => (
             <div
@@ -158,11 +209,12 @@ const ContactSection = () => {
             )}
           </AnimatePresence>
 
-          {/* Navigation */}
+          {submitError && <p className="mt-4 text-sm text-amber-300">{submitError}</p>}
+
           <div className="flex justify-between mt-8">
             <button
               onClick={prev}
-              disabled={step === 0}
+              disabled={step === 0 || submitting}
               className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors"
             >
               <ArrowLeft size={16} /> Back
@@ -170,7 +222,7 @@ const ContactSection = () => {
             {step < 2 ? (
               <button
                 onClick={next}
-                disabled={!canProceed}
+                disabled={!canProceed || submitting}
                 className="flex items-center gap-1 bg-gradient-violet text-primary-foreground px-6 py-2.5 rounded-xl text-sm font-medium hover:opacity-90 disabled:opacity-40 transition-all"
               >
                 Next <ArrowRight size={16} />
@@ -178,10 +230,10 @@ const ContactSection = () => {
             ) : (
               <button
                 onClick={handleSubmit}
-                disabled={!canProceed}
+                disabled={!canProceed || submitting}
                 className="bg-gradient-violet text-primary-foreground px-6 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 disabled:opacity-40 transition-all"
               >
-                Submit
+                {submitting ? "Sending..." : "Submit"}
               </button>
             )}
           </div>

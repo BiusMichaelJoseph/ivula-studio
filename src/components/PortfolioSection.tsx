@@ -94,10 +94,10 @@ const PortfolioSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="glass-card rounded-2xl overflow-hidden group hover:violet-glow transition-shadow duration-300"
+                className="group overflow-hidden rounded-2xl glass-card transition-all duration-300 hover:-translate-y-1 hover:violet-glow"
               >
                 {/* Placeholder thumbnail */}
-                <div className="h-40 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
+                <div className="h-40 bg-gradient-to-br from-secondary to-muted/70 flex items-center justify-center">
                   <span className="font-display text-2xl font-bold text-muted-foreground/30">{p.name}</span>
                 </div>
                 <div className="p-5">

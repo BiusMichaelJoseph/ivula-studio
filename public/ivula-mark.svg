@@ -1,0 +1,12 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ivulaBlue" x1="54" y1="24" x2="202" y2="206" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#13C8E8"/>
+      <stop offset="1" stop-color="#0AA9DF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="128" cy="38" r="22" fill="url(#ivulaBlue)"/>
+  <path d="M92 84H131V190L98 160V129L64 136L92 84Z" fill="url(#ivulaBlue)"/>
+  <path d="M182 84V123L132 173V146L182 84Z" fill="url(#ivulaBlue)"/>
+  <path d="M216 136L136 216L120 200L154 154L216 136Z" fill="url(#ivulaBlue)"/>
+</svg>

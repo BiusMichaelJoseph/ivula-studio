@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "Process", href: "#process" },
   { label: "Pricing", href: "#pricing" },
@@ -12,6 +13,14 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
@@ -24,15 +33,19 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl glass rounded-2xl px-6 py-3 flex items-center justify-between"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all ${
+        scrolled ? "glass shadow-2xl shadow-black/20" : "glass"
+      }`}
     >
-      <button onClick={() => scrollTo("#home")} className="font-display text-xl font-bold tracking-tight">
-        <span className="text-gradient">ivula</span>
-        <span className="text-foreground">.tech</span>
+      <button
+        onClick={() => scrollTo("#home")}
+        className="inline-flex items-center"
+        aria-label="Go to home"
+      >
+        <img src="/ivula-logo.svg" alt="Ivula Tech" className="h-10 w-auto" />
       </button>
 
-      {/* Desktop */}
-      <div className="hidden md:flex items-center gap-8">
+      <div className="hidden md:flex items-center gap-7">
         {navLinks.map((link) => (
           <button
             key={link.href}
@@ -46,16 +59,18 @@ const Navbar = () => {
           onClick={() => scrollTo("#contact")}
           className="bg-gradient-violet text-primary-foreground text-sm font-medium px-5 py-2 rounded-lg hover:opacity-90 transition-opacity"
         >
-          Let's Build
+          Let&apos;s Build
         </button>
       </div>
 
-      {/* Mobile toggle */}
-      <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+      <button
+        className="md:hidden text-foreground"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
+      >
         {mobileOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -77,7 +92,7 @@ const Navbar = () => {
               onClick={() => scrollTo("#contact")}
               className="bg-gradient-violet text-primary-foreground font-medium px-5 py-3 rounded-lg mt-2"
             >
-              Let's Build
+              Let&apos;s Build
             </button>
           </motion.div>
         )}
