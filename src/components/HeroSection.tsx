@@ -21,7 +21,7 @@ const HeroSection = () => {
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <span className="inline-block rounded-full glass-card px-4 py-1.5 text-sm text-muted-foreground mb-6">
-            East Africa&apos;s Fastest Tech Studio
+            Trusted by US Founders · Built for American Startups
           </span>
         </motion.div>
 
@@ -42,7 +42,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mb-10 max-w-2xl text-lg md:text-xl text-muted-foreground"
         >
-          From idea to launch in weeks, not months. We turn ambitious visions into production-ready products.
+          From idea to launch in weeks, not months. A senior engineering team that ships production-ready products for US startups — at a fraction of Silicon Valley rates.
         </motion.p>
 
         <motion.div

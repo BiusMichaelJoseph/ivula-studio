@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "5×", label: "Faster Delivery" },
+  { value: "50+", label: "US Projects Delivered" },
+  { value: "5×", label: "Faster Than Agencies" },
   { value: "98%", label: "Client Retention" },
   { value: "3 wks", label: "Avg. MVP Launch" },
 ];
