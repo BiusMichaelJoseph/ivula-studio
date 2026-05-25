@@ -41,7 +41,7 @@ const ContactSection = () => {
       ].join("\n")
     );
 
-    window.location.href = `mailto:info@ivula.co.ke?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:ivula@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleSubmit = async () => {
@@ -51,7 +51,7 @@ const ContactSection = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@ivula.co.ke", {
+      const response = await fetch("https://formsubmit.co/ajax/ivula@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const ContactSection = () => {
         >
           <CheckCircle2 size={48} className="text-primary mx-auto mb-4" />
           <h3 className="font-display text-2xl font-bold mb-2">We'll be in touch!</h3>
-          <p className="text-muted-foreground">Thank you, {data.name}. Your request has been sent to info@ivula.co.ke.</p>
+          <p className="text-muted-foreground">Thank you, {data.name}. Your request has been sent to ivula@gmail.com. We typically reply within 1 business day (US hours).</p>
         </motion.div>
       </section>
     );

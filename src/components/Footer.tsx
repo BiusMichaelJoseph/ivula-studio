@@ -37,14 +37,14 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-sm mb-4 uppercase tracking-wider text-muted-foreground">Get in Touch</h4>
             <div className="flex flex-col gap-3">
-              <a href="mailto:info@ivula.co.ke" className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-                <Mail size={14} /> info@ivula.co.ke
+              <a href="mailto:ivula@gmail.com" className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
+                <Mail size={14} /> ivula@gmail.com
               </a>
               <a href="tel:+254743761460" className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-                <Phone size={14} /> 0743 761 460
+                <Phone size={14} /> +254 743 761 460
               </a>
               <a href="https://wa.me/254743761460" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-                <MessageCircle size={14} /> WhatsApp
+                <MessageCircle size={14} /> WhatsApp (+254 743 761 460)
               </a>
             </div>
           </div>

@@ -76,7 +76,7 @@ const PricingSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">No hidden fees. Pick a plan and let's start building.</p>
+          <p className="text-muted-foreground max-w-lg mx-auto">All prices in USD. Fixed-scope, no hidden fees. Pay by Stripe, ACH, or wire.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
